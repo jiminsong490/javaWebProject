@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <!-- <link rel="stylesheet" href="style.css" /> -->
+        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    </head>
+    <body>
+        <div id="chart"></div>
+
+        <p id="fileNameText">파일을 선택해주세요.</p>
+        <p id="message">메시지 표시 텍스트입니다.</p>
+        <div>
+            <input id="inputFile" type="file" />
+        </div>
+        <div>
+            <input
+                id="inputFileName"
+                type="text"
+                placeholder="파일 이름을 입력해주세요."
+            />
+            <button id="upload">업로드</button>
+        </div>
+        <div>
+            <input
+                id="inputNumber"
+                type="text"
+                placeholder="파일 번호를 입력해주세요."
+            />
+            <button id="getText">파일 가져오기</button>
+        </div>
+        <div>
+            <button id="btnCore1">Core1</button>
+            <button id="btnCore2">Core2</button>
+            <button id="btnCore3">Core3</button>
+            <button id="btnCore4">Core4</button>
+            <button id="btnCore5">Core5</button>
+        </div>
+        <div>
+            <button id="btnTask1">Task1</button>
+            <button id="btnTask2">Task2</button>
+            <button id="btnTask3">Task3</button>
+            <button id="btnTask4">Task4</button>
+            <button id="btnTask5">Task5</button>
+        </div>
+        <div id="list"></div>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script src="/script.js"></script>
+    </body>
+    <style>
+        body {
+            background-color: #dfffc9;
+        }
+        #btnCore1 {
+            box-shadow: inset 0px 1px 0px 0px #bee2f9;
+
+            background-color: #63b8ee;
+            border-radius: 6px;
+            border: 1px solid #3866a3;
+            display: inline-block;
+            cursor: pointer;
+            color: #14396a;
+            font-family: Arial;
+            font-size: 15px;
+            font-weight: bold;
+            padding: 6px 24px;
+            text-decoration: none;
+            text-shadow: 0px 1px 0px #7cacde;
+
+            display: block;
+            height: 50px;
+            width: 100px;
+            position: absolute;
+            top: 600px;
+            left: 400px;
+        }
+        #btnCore1:hover {
+            background: linear-gradient(to bottom, #468ccf 5%, #63b8ee 100%);
+            background-color: #468ccf;
+        }
+        #btnCore1:active {
+            position: absolute;
+            top: 600px;
+            left: 400px;
+        }
+        #btnCore2 {
+            box-shadow: inset 0px 1px 0px 0px #bee2f9;
+
+            background-color: #63b8ee;
+            border-radius: 6px;
+            border: 1px solid #3866a3;
+            display: inline-block;
+            cursor: pointer;
+            color: #14396a;
+            font-family: Arial;
+            font-size: 15px;
+            font-weight: bold;
+            padding: 6px 24px;
+            text-decoration: none;
+            text-shadow: 0px 1px 0px #7cacde;
+            display: block;
+            height: 50px;
+            width: 100px;
+            position: absolute;
+            top: 600px;
+            left: 600px;
+        }
+        #btnCore2:hover {
+            background: linear-gradient(to bottom, #468ccf 5%, #63b8ee 100%);
+            background-color: #468ccf;
+        }
+        #btnCore2:active {
+            position: absolute;
+            top: 600px;
+            left: 600px;
+        }
+        #btnCore3 {
+            box-shadow: inset 0px 1px 0px 0px #bee2f9;
+            background-color: #63b8ee;
+            border-radius: 6px;
+            border: 1px solid #3866a3;
+            display: inline-block;
+            cursor: pointer;
+            color: #14396a;
+            font-family: Arial;
+            font-size: 15px;
+            font-weight: bold;
+            padding: 6px 24px;
+            text-decoration: none;
+            text-shadow: 0px 1px 0px #7cacde;
+            display: block;
+            height: 50px;
+            width: 100px;
+            position: absolute;
+            top: 600px;
+            left: 800px;
+        }
+        #btnCore3:hover {
+            background: linear-gradient(to bottom, #468ccf 5%, #63b8ee 100%);
+            background-color: #468ccf;
+        }
+        #btnCore3:active {
+            position: absolute;
+            top: 600px;
+            left: 800px;
+        }
+        #btnCore4 {
+            box-shadow: inset 0px 1px 0px 0px #bee2f9;
+            background-color: #63b8ee;
+            border-radius: 6px;
+            border: 1px solid #3866a3;
+            display: inline-block;
+            cursor: pointer;
+            color: #14396a;
+            font-family: Arial;
+            font-size: 15px;
+            font-weight: bold;
+            padding: 6px 24px;
+            text-decoration: none;
+            text-shadow: 0px 1px 0px #7cacde;
+            display: block;
+            height: 50px;
+            width: 100px;
+            position: absolute;
+            top: 600px;
+            left: 1000px;
+        }
+        #btnCore4:hover {
+            background: linear-gradient(to bottom, #468ccf 5%, #63b8ee 100%);
+            background-color: #468ccf;
+        }
+        #btnCore4:active {
+            position: absolute;
+            top: 600px;
+            left: 1000px;
+        }
+        #btnCore5 {
+            box-shadow: inset 0px 1px 0px 0px #bee2f9;
+            background-color: #63b8ee;
+            border-radius: 6px;
+            border: 1px solid #3866a3;
+            display: inline-block;
+            cursor: pointer;
+            color: #14396a;
+            font-family: Arial;
+            font-size: 15px;
+            font-weight: bold;
+            padding: 6px 24px;
+            text-decoration: none;
+            text-shadow: 0px 1px 0px #7cacde;
+            display: block;
+            height: 50px;
+            width: 100px;
+            position: absolute;
+            top: 600px;
+            left: 1200px;
+        }
+        #btnCore5:hover {
+            background: linear-gradient(to bottom, #468ccf 5%, #63b8ee 100%);
+            background-color: #468ccf;
+        }
+        #btnCore5:active {
+            position: absolute;
+            top: 600px;
+            left: 1200px;
+        }
+        #btnTask1 {
+            box-shadow: inset 0px 1px 0px 0px #bee2f9;
+            background: linear-gradient(to bottom, #face1e 5%, #e6f638 100%);
+            background-color: #63b8ee;
+            border-radius: 6px;
+            border: 1px solid #3866a3;
+            display: inline-block;
+            cursor: pointer;
+            color: #14396a;
+            font-family: Arial;
+            font-size: 15px;
+            font-weight: bold;
+            padding: 6px 24px;
+            text-decoration: none;
+            text-shadow: 0px 1px 0px #7cacde;
+            display: block;
+            height: 50px;
+            width: 100px;
+            position: absolute;
+            top: 700px;
+            left: 400px;
+        }
+        #btnTask1:hover {
+            background: linear-gradient(to bottom, #9ae24c 5%, #7ed846 100%);
+            background-color: #468ccf;
+        }
+        #btnTask1:active {
+            position: absolute;
+            top: 700px;
+            left: 400px;
+        }
+        #btnTask2 {
+            box-shadow: inset 0px 1px 0px 0px #bee2f9;
+            background: linear-gradient(to bottom, #face1e 5%, #e6f638 100%);
+            background-color: #63b8ee;
+            border-radius: 6px;
+            border: 1px solid #3866a3;
+            display: inline-block;
+            cursor: pointer;
+            color: #14396a;
+            font-family: Arial;
+            font-size: 15px;
+            font-weight: bold;
+            padding: 6px 24px;
+            text-decoration: none;
+            text-shadow: 0px 1px 0px #7cacde;
+            display: block;
+            height: 50px;
+            width: 100px;
+            top: 100px;
+            position: absolute;
+            top: 700px;
+            left: 600px;
+        }
+        #btnTask2:hover {
+            background: linear-gradient(to bottom, #9ae24c 5%, #7ed846 100%);
+            background-color: #468ccf;
+        }
+        #btnTask2:active {
+            position: absolute;
+            top: 700px;
+            left: 600px;
+        }
+        #btnTask3 {
+            box-shadow: inset 0px 1px 0px 0px #bee2f9;
+            background: linear-gradient(to bottom, #face1e 5%, #e6f638 100%);
+            background-color: #63b8ee;
+            border-radius: 6px;
+            border: 1px solid #3866a3;
+            display: inline-block;
+            cursor: pointer;
+            color: #14396a;
+            font-family: Arial;
+            font-size: 15px;
+            font-weight: bold;
+            padding: 6px 24px;
+            text-decoration: none;
+            text-shadow: 0px 1px 0px #7cacde;
+            display: block;
+            height: 50px;
+            width: 100px;
+            position: absolute;
+            top: 700px;
+            left: 800px;
+        }
+        #btnTask3:hover {
+            background: linear-gradient(to bottom, #9ae24c 5%, #7ed846 100%);
+            background-color: #468ccf;
+        }
+        #btnTask3:active {
+            position: absolute;
+            top: 700px;
+            left: 800px;
+        }
+        #btnTask4 {
+            box-shadow: inset 0px 1px 0px 0px #bee2f9;
+            background: linear-gradient(to bottom, #face1e 5%, #e6f638 100%);
+            background-color: #63b8ee;
+            border-radius: 6px;
+            border: 1px solid #3866a3;
+            display: inline-block;
+            cursor: pointer;
+            color: #14396a;
+            font-family: Arial;
+            font-size: 15px;
+            font-weight: bold;
+            padding: 6px 24px;
+            text-decoration: none;
+            text-shadow: 0px 1px 0px #7cacde;
+            display: block;
+            height: 50px;
+            width: 100px;
+            position: absolute;
+            top: 700px;
+            left: 1000px;
+        }
+        #btnTask4:hover {
+            background: linear-gradient(to bottom, #9ae24c 5%, #7ed846 100%);
+            background-color: #468ccf;
+        }
+        #btnTask4:active {
+            position: absolute;
+            top: 700px;
+            left: 1000px;
+        }
+        #btnTask5 {
+            box-shadow: inset 0px 1px 0px 0px #bee2f9;
+            background: linear-gradient(to bottom, #face1e 5%, #e6f638 100%);
+            background-color: #63b8ee;
+            border-radius: 6px;
+            border: 1px solid #3866a3;
+            display: inline-block;
+            cursor: pointer;
+            color: #14396a;
+            font-family: Arial;
+            font-size: 15px;
+            font-weight: bold;
+            padding: 6px 24px;
+            text-decoration: none;
+            text-shadow: 0px 1px 0px #7cacde;
+            display: block;
+            height: 50px;
+            width: 100px;
+            top: 100px;
+            position: absolute;
+            top: 700px;
+            left: 1200px;
+        }
+        #btnTask5:hover {
+            background: linear-gradient(to bottom, #9ae24c 5%, #7ed846 100%);
+            background-color: #468ccf;
+        }
+        #btnTask5:active {
+            position: absolute;
+            top: 700px;
+            left: 1200px;
+        }
+    </style>
+</html>
